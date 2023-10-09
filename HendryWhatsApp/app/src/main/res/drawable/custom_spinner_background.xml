@@ -1,0 +1,17 @@
+<!-- res/drawable/custom_spinner_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="#006257" /> <!-- Set the background color -->
+            <corners android:radius="8dp" /> <!-- Adjust the radius to control the corner roundness -->
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <stroke
+                android:width="0dp"
+                android:color="#ffffff" /> <!-- Set the color of the stroke (black in this case) -->
+        </shape>
+    </item>
+</layer-list>
+

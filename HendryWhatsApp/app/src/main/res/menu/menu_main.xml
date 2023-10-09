@@ -1,0 +1,15 @@
+<!-- res/menu/menu_main.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Your other menu items go here if needed -->
+
+    <item
+        android:id="@+id/action_logout"
+        android:title="Log out"
+        app:showAsAction="never"
+        app:actionLayout="@layout/activity_home"
+        app:popupTheme="@style/LogoutMenuItem"/>
+
+
+</menu>
