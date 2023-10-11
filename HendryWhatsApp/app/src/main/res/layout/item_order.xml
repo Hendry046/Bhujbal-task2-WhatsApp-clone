@@ -1,0 +1,89 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="#ffffff"
+    android:elevation="10dp"
+    android:radius="30dp">
+
+    <!-- Your existing content inside the CardView -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:padding="16dp">
+
+        <!-- Order Status -->
+        <TextView
+            android:id="@+id/textOrderStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Status: Pending"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Order Date -->
+        <TextView
+            android:id="@+id/textOrderDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Order Date: 2023-10-08 05:00:01"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Customer Name -->
+        <TextView
+            android:id="@+id/textCustomerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Customer Name: Deepak Nawani Live"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Address -->
+        <TextView
+            android:id="@+id/textAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Address: college address, college, first floor, R3XH+93W, Chandi Range, Uttarakhand 249404, India"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Product Details -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Product Name -->
+            <TextView
+                android:id="@+id/textProductName"
+                android:layout_width="wrap_content"
+                android:textColor="#000000"
+                android:layout_height="wrap_content"
+                android:text="Product: Gokul Cow Milk 500 ml"
+                android:textSize="14sp"/>
+
+            <!-- Product Quantity and Total Price -->
+            <TextView
+                android:id="@+id/textQuantityAndTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="Quantity: 1 | Total: $0.00"
+                android:textSize="14sp"/>
+
+            <!-- Add more product details as needed -->
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
