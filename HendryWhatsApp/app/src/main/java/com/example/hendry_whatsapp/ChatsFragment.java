@@ -1,4 +1,3 @@
-// ChatsFragment.java
 package com.example.hendry_whatsapp;
 
 import android.os.Bundle;
@@ -8,68 +7,53 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.hendry_whatsapp.Model.DataModel.GroupData;
+import com.example.hendry_whatsapp.Model.Interface.TaskCallback;
+import com.example.hendry_whatsapp.ViewModel.ApiViewModel;
+import com.example.hendry_whatsapp.databinding.FragmentChatsBinding;
+
 import java.util.List;
 
 public class ChatsFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private OrderAdapter orderAdapter;
+    private FragmentChatsBinding xml;
+    private ParentAdapter parentAdapter;
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private ApiViewModel apiViewModel;
 
     public ChatsFragment() {
         // Required empty public constructor
     }
 
-    public static ChatsFragment newInstance(String param1, String param2) {
-        ChatsFragment fragment = new ChatsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_chats, container, false);
+        // Inflate the layout for this fragment
+        xml = FragmentChatsBinding.inflate(getLayoutInflater());
 
-        recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        orderAdapter = new OrderAdapter(getContext());
-        recyclerView.setAdapter(orderAdapter);
-
-        ApiClient.fetchData(new ApiClient.ApiCallback() {
+        //init
+        apiViewModel = new ViewModelProvider(this).get(ApiViewModel.class);
+        apiViewModel.fetchData(new TaskCallback() {
             @Override
-            public void onResponse(String jsonString) {
-                if (jsonString != null) {
-                    YourDataModel dataModel = JsonParser.parseData(jsonString);
-                    if (dataModel != null && dataModel.getData() != null) {
-                        List<YourOrderDetailModel> allOrders = new ArrayList<>();
-
-                        for (YourGroupModel group : dataModel.getData()) {
-                            for (YourUserDataModel userData : group.getGroup_data()) {
-                                allOrders.addAll(userData.getOrder_detail());
-                            }
-                        }
-
-                        orderAdapter.setOrders(allOrders);
-                    }
-                }
+            public void onSuccess(List<GroupData> list) {
+                setAdapter(list);
             }
 
             @Override
-            public void onError(String errorMessage) {
-                Toast.makeText(getContext(), "Failed to fetch data: " + errorMessage, Toast.LENGTH_SHORT).show();
+            public void onFailure(String errorMessage) {
+                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_SHORT).show();
             }
         });
 
-        return view;
+        return xml.getRoot();
+    }
+
+    private void setAdapter(List<GroupData> aar){
+        parentAdapter = new ParentAdapter(getContext(), aar);
+        xml.parentRecyclerview.setAdapter(parentAdapter);
+        xml.parentRecyclerview.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
     }
 }
