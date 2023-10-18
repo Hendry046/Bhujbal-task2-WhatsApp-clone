@@ -2,6 +2,7 @@ package com.example.hendry_whatsapp;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -34,15 +35,22 @@ public class MainAdapter extends RecyclerView.Adapter<MainViewHolder> {
         holder.quantity.setText(list.get(position).getProduct_qty()
                 + " " + list.get(position).getUnit_name());
 
-        if(list.get(position).getOrder_status().equals("Pending")){
-            holder.setNotDelivered();
-        }
-        else {
-            holder.setDelivered();
-        }
-
         //image loading
         holder.setItemImage(list.get(position).getProduct_img_url());
+
+        //deliverd & notDelivered onClick
+        holder.delivered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(holder.selected){
+                    holder.setUnDelivered();
+                }
+                else{
+                    holder.setDelivered();
+                }
+
+            }
+        });
     }
 
     @Override
@@ -50,4 +58,3 @@ public class MainAdapter extends RecyclerView.Adapter<MainViewHolder> {
         return list.size();
     }
 }
-

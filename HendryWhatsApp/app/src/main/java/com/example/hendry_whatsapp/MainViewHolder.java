@@ -18,6 +18,7 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
     TextView itemName, quantity, delivered, notDelivered;
     ImageView itemImage;
     ProgressBar imageProgressBar;
+    boolean selected = false;
 
 
     public MainViewHolder(@NonNull View itemView) {
@@ -37,14 +38,28 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
 
         delivered.setBackground(drawable);
         delivered.setTextColor(itemView.getResources().getColor(R.color.sky_blue));
+
+        selected = true;
     }
 
-    public void setNotDelivered(){
+    public void setUnDelivered(){
         // Get the Drawable from the resource ID
-        Drawable drawable = itemView.getContext().getResources().getDrawable(R.drawable.selected_border);
+        Drawable drawable = itemView.getContext().getResources().getDrawable(R.drawable.unselected_border);
 
-        notDelivered.setBackground(drawable);
-        notDelivered.setTextColor(itemView.getResources().getColor(R.color.sky_blue));
+        delivered.setBackground(drawable);
+        delivered.setTextColor(itemView.getResources().getColor(R.color.grey));
+
+        selected = false;
+    }
+
+    public void setNotDelivered() {
+        // Get the Drawable from the resource ID
+        Drawable drawable = itemView.getContext().getResources().getDrawable(R.drawable.unselected_border);
+
+        delivered.setBackground(drawable);
+        delivered.setTextColor(itemView.getResources().getColor(R.color.grey));
+
+        selected = false;
     }
 
     public void setItemImage(String imgUrl){
@@ -76,4 +91,3 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         itemImage.setVisibility(View.VISIBLE);
     }
 }
-

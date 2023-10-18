@@ -10,5 +10,6 @@
     <color name="your_background_color">#ffffff</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="sky_blue">#34B7F1</color>
+    <color name="grey">#8596A0</color>
 
 </resources>
